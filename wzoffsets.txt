@@ -1,34 +1,12 @@
-# wzoffsets.txt - v6xCore offset table
-#
-# Polled directly from this URL by the overlay. Commit an edit and the next
-# start (or the 10 minute poll) picks it up. No rebuild.
-#
-# Format:  key=value      value decimal or 0x hex
-#          # comment      whole line, or trailing after a value
-#
-# 0x0 on a pointer/RVA means "not set": the value is discarded while loading
-# and the previous one stays, so a half filled table can never wipe a working
-# one.
-#
-# The CRITICAL keys decide whether ESP finds anything at all:
-#   decrypt_rva.client_info_enc / _key   decrypts the client array
-#   decrypt_rva.client_base_enc / _key   fallback path to the same array
-#   globals.ref_def                      refdef (camera, field of view)
-#   local.index                          index of the local client
-# Without them clientinfo stays 0x0, slots=0, players=0 and nothing is drawn.
-
-# --- CRITICAL - these decide whether ESP finds anything. 0x0 = not set. ---
-decrypt_rva.client_info_enc=0x0   # CRITICAL
-decrypt_rva.client_info_key=0x0   # CRITICAL
-decrypt_rva.client_base_enc=0x0   # CRITICAL
-decrypt_rva.client_base_key=0x0   # CRITICAL
-globals.ref_def=0x0   # CRITICAL
-local.index=0x0   # CRITICAL
+decrypt_rva.client_info_enc=0x0
+decrypt_rva.client_info_key=0x0
+decrypt_rva.client_base_enc=0x0
+decrypt_rva.client_base_key=0x0
+globals.ref_def=0x0
+local.index=0x0
 player.size=0x0
 player.valid=0x0
 player.pos=0x0
-
-# --- CAMERA - origin and angles, needed for world-to-screen ---
 camera.base=0x0
 camera.pos=0x0
 camera.pos_enc=0x0
@@ -40,8 +18,6 @@ camera.view_matrix=0x0
 camera.fov=0x0
 globals.camera_base=0x0
 globals.timestamp=0x0
-
-# --- LOCAL - own index and visibility bits ---
 local.index_pos=0x0
 local.visible_client_bits=0x0
 local.recoil=0x0
@@ -51,8 +27,6 @@ local.entity_index=0x0
 local.recoil_horizontal=0x0
 local.recoil_vertical=0x0
 local.recoil_spread=0x0
-
-# --- PLAYER - layout of one client entry ---
 player.pos_data=0x0
 player.team=0x0
 player.stance=0x0
@@ -62,8 +36,6 @@ player.weapon_index=0x0
 player.weapon_obj=0x0
 player.usercmd=0x0
 player.visibility=0x0
-
-# --- GLOBALS - other module globals ---
 globals.name_array=0x0
 globals.game_mode=0x0
 globals.weapon_definitions=0x0
@@ -73,8 +45,6 @@ globals.lobby_data=0x0
 globals.ms_compassSystemArray=0x0
 clientinfo.hop=0x0
 refdef.clientinfo=0x0
-
-# --- BONE - bone table ---
 bone.base_pos=0x0
 bone.size=0x0
 bone.offset=0x0
@@ -84,8 +54,6 @@ bone.chest=5
 bone.pelvis=0
 decrypt_rva.bone_enc=0x0
 decrypt_rva.bone_key=0x0
-
-# --- ENTITY - entity array ---
 entity.predictedPlayerEntity=0x0
 entity.size=0x0
 entity.nextState_number=0x0
@@ -93,24 +61,18 @@ entity.nextState_eType=0x0
 entity.local_pos=0x0
 entity.local_valid=0x0
 entity.local_size=0x0
-
-# --- NAME ARRAY - names, health, alive ---
 name_array.ptr=0x0
 name_array.pos=0x0
 name_array.size=0x0
 name_array.entry_name=0x0
 name_array.entry_health=0x0
 name_array.entry_alive=0x0
-
-# --- LOOT - ground loot and supply drops ---
 loot.ptr=0x0
 loot.size=0x0
 loot.pos=0x0
 loot.valid1=0x0
 loot.valid2=0x0
 loot.valid_supply=0x0
-
-# --- CODE - function RVAs, never called, used as anchors only ---
 code.ClientActive=0x0
 code.PlayerValid=0x0
 code.GetBoneIndex=0x0
@@ -121,13 +83,9 @@ code.g_SnapshotQueue=0x0
 decrypt_rva.stub_client_info=0x0
 decrypt_rva.stub_client_base=0x0
 decrypt_rva.stub_bone_base=0x0
-
-# --- FEATURE - optional, 0x0 keeps the feature off ---
 weapon.rapid_fire=0x0
 weapon.no_flash=0x0
 weapon.name=0x0
-
-# --- TUNING - not offsets, geometry and timers ---
 projection_fov=80
 stand_height=1.82
 crouch_height=1.3
